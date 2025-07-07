@@ -23,20 +23,6 @@ public class UserController {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    // Register new user
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        Optional<User> existing = userRepository.findByEmail(user.getEmail());
-        if (existing.isPresent()) {
-            return ResponseEntity.badRequest().body("Email already in use.");
-        }
-
-        // Encrypt password before saving
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully.");
-    }
-
     // Login user
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
@@ -45,5 +31,19 @@ public class UserController {
             return ResponseEntity.ok("Login successful.");
         }
         return ResponseEntity.badRequest().body("Invalid email or password.");
+    }
+
+    // Register new user
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        Optional<User> existing = userRepository.findByEmail(user.getEmail());
+        if (existing.isPresent()) {
+            return ResponseEntity.badRequest().body("Email already in use.");
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Encrypt password before saving
+        userRepository.save(user);
+        return ResponseEntity.ok("User registered successfully.");
     }
 }
