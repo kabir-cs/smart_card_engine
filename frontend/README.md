@@ -1,66 +1,96 @@
-# Frontend
+<h1 align="center">Frontend – Credit Card Recommender</h1>
 
-This is the frontend for the Credit Card Recommender application. It is built with React, TypeScript, and Vite for a fast, modern user experience.
+<p align="center">
+  <img src="../frontend/public/vite.svg" alt="Frontend Logo" width="100" />
+</p>
 
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Setup](#setup)
-- [Project Structure](#project-structure)
-- [Main Components & Pages](#main-components--pages)
-- [Styling](#styling)
-- [API Integration](#api-integration)
-- [Development Tips](#development-tips)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-blue?logo=react" />
+  <img src="https://img.shields.io/badge/TypeScript-4.x-blue?logo=typescript" />
+  <img src="https://img.shields.io/badge/Vite-fast-646cff?logo=vite" />
+  <img src="https://img.shields.io/badge/CSS%20Modules-styles-green" />
+</p>
 
 ---
 
-## Overview
-The frontend provides a responsive UI for users to register, log in, and receive personalized credit card recommendations based on their profile. It communicates with the backend via REST APIs.
+## 🌟 Overview
+This is the frontend for the Credit Card Recommender app. It provides a modern, responsive UI for users to register, log in, and receive personalized credit card recommendations.
 
-## Setup
-1. Ensure you have **Node.js** (v16+ recommended) and **npm** installed.
-2. Navigate to the `frontend` directory.
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-5. The app will be available at [http://localhost:5173](http://localhost:5173)
+---
 
-## Project Structure
-- `src/components/` — Reusable UI components
-  - `auth/` — Authentication forms (`LoginForm`, `SignupForm`)
-  - `CreditCardWidget.tsx` — Displays credit card details
-- `src/pages/` — Main pages (`Dashboard`, `LoginPage`, `SignupPage`)
-- `src/styles/` — CSS modules for styling
-- `public/` — Static assets
+## 🖼️ UI Preview
+> _Add your own screenshots here!_
 
-## Main Components & Pages
-- **LoginPage / SignupPage**: Entry points for authentication, wrapping `LoginForm` and `SignupForm`.
-- **Dashboard**: Main page for searching and filtering credit cards by income, credit score, and preferences.
-- **CreditCardWidget**: Displays detailed information about a credit card.
-- **LoginForm / SignupForm**: Handle user authentication and registration, communicating with backend endpoints.
+<p align="center">
+  <img src="https://placehold.co/600x300?text=Dashboard+UI" alt="Dashboard UI"/>
+  <img src="https://placehold.co/300x500?text=Mobile+View" alt="Mobile UI"/>
+</p>
 
-## Styling
-- All styles are located in `src/styles/` and component-specific CSS files.
-- The UI is responsive and works well on both desktop and mobile.
+---
 
-## API Integration
-- The frontend communicates with the backend at `http://localhost:8080` (default).
-- Endpoints used:
+## 📦 Structure
+```
+frontend/
+  src/
+    components/
+      auth/           # LoginForm, SignupForm
+      CreditCardWidget.tsx
+    pages/            # Dashboard, LoginPage, SignupPage
+    styles/           # CSS modules
+    assets/
+  public/
+    vite.svg          # Logo
+  index.html
+```
+
+---
+
+## 🔄 Workflow
+
+```mermaid
+graph LR
+    U["User"] -- Registers/Logs in --> F["Frontend (React)"]
+    F -- Sends API request --> B["Backend (Spring Boot)"]
+    B -- Reads/Writes --> D["MongoDB"]
+    B -- Sends response --> F
+    F -- Shows recommendations --> U
+```
+
+---
+
+## ✨ Main Components & Pages
+- **LoginPage / SignupPage**: Entry points for authentication
+- **Dashboard**: Search/filter credit cards by income, credit score, preferences
+- **CreditCardWidget**: Visual card display
+- **LoginForm / SignupForm**: Handles user authentication
+
+---
+
+## ⚡ Quickstart
+```bash
+cd frontend
+npm install
+npm run dev
+```
+App runs at [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🔗 API Integration
+- Communicates with backend at `http://localhost:8080`
+- Endpoints:
   - `POST /api/users/login` — User login
   - `POST /api/users/register` — User registration
   - `GET /api/cards` — Fetch credit card data
 
-## Development Tips
-- Update API URLs in components if your backend runs on a different port.
-- Use React DevTools and browser console for debugging.
-- For production, build the app with `npm run build` and serve the static files.
+---
+
+## 🛠️ Development Tips
+- Update API URLs if backend runs on a different port
+- Use React DevTools for debugging
+- Build for production: `npm run build`
 
 ---
 
-For more details, see the code and comments in each component and page.
+## 📄 License
+[MIT](../LICENSE)

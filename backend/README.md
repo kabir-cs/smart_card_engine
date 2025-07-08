@@ -1,63 +1,89 @@
-# Backend
+<h1 align="center">Backend – Credit Card Recommender</h1>
 
-This is the backend for the Credit Card Recommender application. It is built using Spring Boot and MongoDB.
-
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Setup](#setup)
-- [Project Structure](#project-structure)
-- [API Endpoints](#api-endpoints)
-- [Security](#security)
-- [Modifying the Application](#modifying-the-application)
+<p align="center">
+  <img src="https://img.shields.io/badge/SpringBoot-API-green?logo=spring" />
+  <img src="https://img.shields.io/badge/Database-MongoDB-brightgreen?logo=mongodb" />
+  <img src="https://img.shields.io/badge/Java-17-blue?logo=java" />
+</p>
 
 ---
 
-## Overview
-The backend provides RESTful APIs for user authentication, registration, and credit card data management. It uses MongoDB for data storage and BCrypt for secure password hashing.
-
-## Setup
-1. Ensure you have **Java 17** and **Maven** installed.
-2. Navigate to the `backend` directory.
-3. Start the application:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-4. The backend will run on [http://localhost:8080](http://localhost:8080) by default.
-
-## Project Structure
-- `model/` — Data models (e.g., `User`, `CreditCard`)
-- `controller/` — REST controllers:
-  - `UserController`: Handles registration and login
-  - `CreditCardController`: Manages credit card data
-  - `HelloController`: Simple test endpoint
-- `repository/` — MongoDB repositories
-- `config/` — Security configuration (CORS, password encoding)
-
-## API Endpoints
-### User
-- `POST /api/users/register` — Register a new user
-- `POST /api/users/login` — Login with email and password
-
-### Credit Cards
-- `GET /api/cards` — Get all credit cards
-- `POST /api/cards` — Add a new credit card
-
-### Misc
-- `GET /api/message` — Test endpoint (returns greeting)
-
-## Security
-- Passwords are hashed using BCrypt before storage.
-- CORS is enabled for frontend development (`http://localhost:5173`).
-- Sensitive endpoints require proper validation.
-
-## Modifying the Application
-- **Models**: Add new models in `model/` and annotate with `@Document`.
-- **Controllers**: Add new REST endpoints in `controller/`.
-- **Repositories**: Extend `MongoRepository` for new data access layers.
-- **Config**: Update `config/SecurityConfig.java` for security changes.
+## 🏗️ Overview
+This backend powers the Credit Card Recommender app, providing secure authentication, user management, and credit card data APIs. Built with Spring Boot and MongoDB.
 
 ---
 
-For more details, see the code and comments in each directory.
+## 📦 Structure
+```
+backend/
+  src/main/java/com/example/backend/
+    controller/   # REST endpoints
+    model/        # Data models
+    repository/   # MongoDB repositories
+    config/       # Security config
+    HelloController.java
+    BackendApplication.java
+  src/main/resources/
+    application.properties
+    creditCardData.json
+```
+
+---
+
+## 🔄 Workflow
+
+```mermaid
+graph LR
+    A["Frontend (React)"] -- API Request --> B["Spring Boot API"]
+    B -- Query --> C["MongoDB"]
+    C -- Results --> B
+    B -- API Response --> A
+```
+
+---
+
+## 🔐 Security
+- Passwords are hashed with BCrypt
+- CORS enabled for frontend dev (`http://localhost:5173`)
+- Sensitive endpoints require validation
+
+---
+
+## 🚦 API Endpoints
+
+| Endpoint                  | Method | Description                  |
+|--------------------------|--------|------------------------------|
+| `/api/users/register`     | POST   | Register a new user          |
+| `/api/users/login`        | POST   | Login with email/password    |
+| `/api/cards`              | GET    | Get all credit cards         |
+| `/api/cards`              | POST   | Add a new credit card        |
+| `/api/message`            | GET    | Test endpoint (greeting)     |
+
+---
+
+## 🧩 Key Components
+- **UserController**: Handles registration & login
+- **CreditCardController**: Manages card data
+- **HelloController**: Test endpoint
+- **SecurityConfig**: CORS, password encoding
+
+---
+
+## ⚡ Quickstart
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+---
+
+## 🛠️ Modifying the Backend
+- Add models in `model/` (annotate with `@Document`)
+- Add endpoints in `controller/`
+- Add repositories in `repository/` (extend `MongoRepository`)
+- Update security in `config/SecurityConfig.java`
+
+---
+
+## 📄 License
+[MIT](../LICENSE)
