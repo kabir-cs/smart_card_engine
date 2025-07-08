@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Credit Card Recommender application. It is built with React, TypeScript, and Vite for a fast, modern user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Overview](#overview)
+- [Setup](#setup)
+- [Project Structure](#project-structure)
+- [Main Components & Pages](#main-components--pages)
+- [Styling](#styling)
+- [API Integration](#api-integration)
+- [Development Tips](#development-tips)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Overview
+The frontend provides a responsive UI for users to register, log in, and receive personalized credit card recommendations based on their profile. It communicates with the backend via REST APIs.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Setup
+1. Ensure you have **Node.js** (v16+ recommended) and **npm** installed.
+2. Navigate to the `frontend` directory.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. The app will be available at [http://localhost:5173](http://localhost:5173)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
+- `src/components/` — Reusable UI components
+  - `auth/` — Authentication forms (`LoginForm`, `SignupForm`)
+  - `CreditCardWidget.tsx` — Displays credit card details
+- `src/pages/` — Main pages (`Dashboard`, `LoginPage`, `SignupPage`)
+- `src/styles/` — CSS modules for styling
+- `public/` — Static assets
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Main Components & Pages
+- **LoginPage / SignupPage**: Entry points for authentication, wrapping `LoginForm` and `SignupForm`.
+- **Dashboard**: Main page for searching and filtering credit cards by income, credit score, and preferences.
+- **CreditCardWidget**: Displays detailed information about a credit card.
+- **LoginForm / SignupForm**: Handle user authentication and registration, communicating with backend endpoints.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Styling
+- All styles are located in `src/styles/` and component-specific CSS files.
+- The UI is responsive and works well on both desktop and mobile.
+
+## API Integration
+- The frontend communicates with the backend at `http://localhost:8080` (default).
+- Endpoints used:
+  - `POST /api/users/login` — User login
+  - `POST /api/users/register` — User registration
+  - `GET /api/cards` — Fetch credit card data
+
+## Development Tips
+- Update API URLs in components if your backend runs on a different port.
+- Use React DevTools and browser console for debugging.
+- For production, build the app with `npm run build` and serve the static files.
+
+---
+
+For more details, see the code and comments in each component and page.

@@ -2,23 +2,62 @@
 
 This is the backend for the Credit Card Recommender application. It is built using Spring Boot and MongoDB.
 
-## Running the Backend
+---
 
-1. Ensure you have Java 17 and Maven installed.
+## Table of Contents
+- [Overview](#overview)
+- [Setup](#setup)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Security](#security)
+- [Modifying the Application](#modifying-the-application)
+
+---
+
+## Overview
+The backend provides RESTful APIs for user authentication, registration, and credit card data management. It uses MongoDB for data storage and BCrypt for secure password hashing.
+
+## Setup
+1. Ensure you have **Java 17** and **Maven** installed.
 2. Navigate to the `backend` directory.
-3. Run the following command to start the application:
+3. Start the application:
    ```bash
    ./mvnw spring-boot:run
    ```
+4. The backend will run on [http://localhost:8080](http://localhost:8080) by default.
 
 ## Project Structure
+- `model/` — Data models (e.g., `User`, `CreditCard`)
+- `controller/` — REST controllers:
+  - `UserController`: Handles registration and login
+  - `CreditCardController`: Manages credit card data
+  - `HelloController`: Simple test endpoint
+- `repository/` — MongoDB repositories
+- `config/` — Security configuration (CORS, password encoding)
 
-- **Models**: Located in `src/main/java/com/example/backend/model/`. These are the data structures used to represent entities in the application. For example, `CreditCard.java` defines the structure of a credit card.
-- **Controllers**: Located in `src/main/java/com/example/backend/controller/`. Controllers handle incoming HTTP requests and return responses. They interact with the service layer to perform business logic.
-- **Repositories**: Located in `src/main/java/com/example/backend/repository/`. Repositories provide an interface for accessing the database. They extend `MongoRepository` to perform CRUD operations on the models.
+## API Endpoints
+### User
+- `POST /api/users/register` — Register a new user
+- `POST /api/users/login` — Login with email and password
+
+### Credit Cards
+- `GET /api/cards` — Get all credit cards
+- `POST /api/cards` — Add a new credit card
+
+### Misc
+- `GET /api/message` — Test endpoint (returns greeting)
+
+## Security
+- Passwords are hashed using BCrypt before storage.
+- CORS is enabled for frontend development (`http://localhost:5173`).
+- Sensitive endpoints require proper validation.
 
 ## Modifying the Application
+- **Models**: Add new models in `model/` and annotate with `@Document`.
+- **Controllers**: Add new REST endpoints in `controller/`.
+- **Repositories**: Extend `MongoRepository` for new data access layers.
+- **Config**: Update `config/SecurityConfig.java` for security changes.
 
-- **Models**: To add a new model, create a new Java class in the `model` directory. Annotate it with `@Document` to specify the MongoDB collection it maps to.
-- **Controllers**: To add a new controller, create a new Java class in the `controller` directory. Annotate it with `@RestController` and define methods to handle HTTP requests.
-- **Repositories**: To add a new repository, create a new interface in the `repository` directory. Extend `MongoRepository` and specify the model and ID type.
+---
+
+For more details, see the code and comments in each directory.
